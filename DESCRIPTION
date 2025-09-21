@@ -4,10 +4,12 @@ Title: Fast, Robust Clustering Algorithms for Gene Enrichment Data
 Version: 1.0.0
 Date: 2025-09-20
 Authors@R: c(
-    person("Junguk", "Hur", "hurlabshared@gmail.com", role = c("aut", "cre"), comment = c(ORCID="0000-0002-0736-2149")),
+    person("Junguk", "Hur", , "hurlabshared@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0736-2149")),
     person("Sarah", "Hong", role = "aut"),
     person("Jane", "Kim", role = "aut")
   )
+Maintainer: Junguk Hur <hurlabshared@gmail.com>
 Description: The richCluster package contains a fast C++ agglomerative
     hierarchical clustering algorithm packaged into easily callable R
     functions, designed to help cluster biological 'terms' based on how
@@ -40,4 +42,3 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 RoxygenNote: 7.3.3
-Maintainer: Junguk Hur <hurlabshared@gmail.com>

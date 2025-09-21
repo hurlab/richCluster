@@ -1,0 +1,27 @@
+* installing *source* package 'richCluster' ...
+** this is package 'richCluster' version '1.0.0'
+** using staged installation
+** libs
+using C++ compiler: 'g++.exe (GCC) 14.2.0'
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c AdjacencyList.cpp -o AdjacencyList.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c ClusterList.cpp -o ClusterList.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c DavidClustering.cpp -o DavidClustering.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c DistanceMatrix.cpp -o DistanceMatrix.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c DistanceMetric.cpp -o DistanceMetric.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c LinkageMethod.cpp -o LinkageMethod.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c RichCluster.cpp -o RichCluster.o
+g++ -std=gnu++17  -I"C:/PROGRA~1/R/R-4.5.1/include" -DNDEBUG  -I'C:/Users/juhur/AppData/Local/R/cache/R/renv/library/richCluster-286f743d/windows/R-4.5/x86_64-w64-mingw32/Rcpp/include'   -I"C:/rtools45/x86_64-w64-mingw32.static.posix/include"      -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign    -c StringUtils.cpp -o StringUtils.o
+g++ -std=gnu++17 -shared -s -static-libgcc -o richCluster.dll tmp.def AdjacencyList.o ClusterList.o DavidClustering.o DistanceMatrix.o DistanceMetric.o LinkageMethod.o RcppExports.o RichCluster.o StringUtils.o -LC:/rtools45/x86_64-w64-mingw32.static.posix/lib/x64 -LC:/rtools45/x86_64-w64-mingw32.static.posix/lib -LC:/PROGRA~1/R/R-4.5.1/bin/x64 -lR
+installing to C:/JHCloud/ONEDRI~1/Desktop/GitHub/richCluster/richCluster.Rcheck/00LOCK-richCluster/00new/richCluster/libs/x64
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (richCluster)

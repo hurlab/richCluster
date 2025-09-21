@@ -10,12 +10,12 @@ Tools for clustering enriched terms, building correlation networks,
 and producing interactive heatmaps and network views.
 }
 \author{
-\strong{Maintainer}: Junguk Hur \email{junguk.hur@med.und.edu}
+\strong{Maintainer}: Junguk Hur \email{hurlabshared@gmail.com} (\href{https://orcid.org/0000-0002-0736-2149}{ORCID})
 
 Authors:
 \itemize{
-  \item Sarah Hong \email{ssh2198@columbia.edu}
-  \item Jane Kim \email{j6kim2026@chadwickschool.org}
+  \item Sarah Hong
+  \item Jane Kim
 }
 
 }

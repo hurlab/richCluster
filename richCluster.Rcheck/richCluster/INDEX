@@ -1,0 +1,27 @@
+cluster                 Cluster Terms from Enrichment Results
+cluster_bar             Cluster-level Bar Plot of Enrichment
+                        Significance
+cluster_correlation_hmap
+                        Create a Correlation Heatmap for a Specific
+                        Cluster
+cluster_dot             Cluster-level Dot Plot of Enrichment
+                        Significance
+cluster_hmap            Create a Heatmap of Clustered Enrichment
+                        Results
+cluster_network         Create a Network Graph for a Specific Cluster
+compare_network_graphs_plotly
+                        Compare Network Graphs using Plotly
+david_cluster           Cluster Terms using DAVID's method
+export_df               Export Cluster Result as Dataframe
+filter_clusters         Filter Clusters by Number of Terms
+format_colnames         Format Column Names for Merging
+full_network            Create a Network Graph for the Entire Distance
+                        Matrix
+merge_enrichment_results
+                        Merge List of Enrichment Results
+plot_network_graph      Plot Network Graph for a Cluster
+runRichCluster          Run clustering in C++ backend
+term_bar                Term-level Bar Plot for a Specific Cluster
+term_dot                Term-level Dot Plot for a Specific Cluster
+term_hmap               Generate a Heatmap of Enrichment Results for
+                        Specific Clusters and Terms

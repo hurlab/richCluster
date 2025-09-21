@@ -1,0 +1,690 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\makeatletter\@ifl@t@r\fmtversion{2018/04/01}{}{\usepackage[utf8]{inputenc}}\makeatother
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `richCluster'}}
+\par\bigskip{\large \today}
+\end{center}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdftitle = {richCluster: Fast, Robust Clustering Algorithms for Gene Enrichment Data}}}{}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdfauthor = {Junguk Hur; Sarah Hong; Jane Kim}}}{}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Fast, Robust Clustering Algorithms for Gene Enrichment Data}
+\item[Version]\AsIs{1.0.0}
+\item[Date]\AsIs{2025-09-20}
+\item[Maintainer]\AsIs{Junguk Hur }\email{hurlabshared@gmail.com}\AsIs{}
+\item[Description]\AsIs{The richCluster package contains a fast C++ agglomerative
+hierarchical clustering algorithm packaged into easily callable R
+functions, designed to help cluster biological 'terms' based on how
+similar of genes are expressed in their activation.}
+\item[License]\AsIs{MIT + file LICENSE}
+\item[Depends]\AsIs{R (>= 3.5.0)}
+\item[Imports]\AsIs{dplyr, fields, heatmaply, igraph, iheatmapr, magrittr,
+networkD3, plotly, Rcpp (>= 1.0.14), stats, tidyr, viridis}
+\item[Suggests]\AsIs{devtools, knitr, rmarkdown, roxygen2, testthat}
+\item[LinkingTo]\AsIs{Rcpp}
+\item[VignetteBuilder]\AsIs{knitr}
+\item[Encoding]\AsIs{UTF-8}
+\item[RoxygenNote]\AsIs{7.3.3}
+\item[NeedsCompilation]\AsIs{yes}
+\item[Author]\AsIs{Junguk Hur [aut, cre] (ORCID: <}\url{https://orcid.org/0000-0002-0736-2149}\AsIs{>),
+Sarah Hong [aut],
+Jane Kim [aut]}
+\item[Archs]\AsIs{x64}
+\end{description}
+\Rdcontents{Contents}
+\HeaderA{richCluster-package}{richCluster: clustering and visualization utilities}{richCluster.Rdash.package}
+\aliasA{richCluster}{richCluster-package}{richCluster}
+\keyword{internal}{richCluster-package}
+%
+\begin{Description}
+Tools for clustering enriched terms, building correlation networks,
+and producing interactive heatmaps and network views.
+\end{Description}
+%
+\begin{Author}
+\strong{Maintainer}: Junguk Hur \email{junguk.hur@med.und.edu}
+
+Authors:
+\begin{itemize}
+
+\item{} Sarah Hong \email{ssh2198@columbia.edu}
+\item{} Jane Kim \email{j6kim2026@chadwickschool.org}
+
+\end{itemize}
+
+
+\end{Author}
+\HeaderA{cluster}{Cluster Terms from Enrichment Results}{cluster}
+%
+\begin{Description}
+This function performs clustering on enrichment results by integrating
+gene similarity scores and various clustering strategies.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster(
+  enrichment_results,
+  df_names = NULL,
+  min_terms = 5,
+  min_value = 0.1,
+  distance_metric = "kappa",
+  distance_cutoff = 0.5,
+  linkage_method = "average",
+  linkage_cutoff = 0.5
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{enrichment\_results}] A list of dataframes, each containing enrichment results.
+Each dataframe should include at least the columns 'Term', 'GeneID', and 'Padj'.
+
+\item[\code{df\_names}] Optional, a character vector of names for the enrichment result dataframes. Must
+match the length of `enrichment\_results`. Default is `NULL`.
+
+\item[\code{min\_terms}] Minimum number of terms each final cluster must include
+
+\item[\code{min\_value}] Minimum 'Pvalue' a term must have in order to be counted in final clustering
+
+\item[\code{distance\_metric}] A string specifying the distance metric to use (e.g., "kappa").
+
+\item[\code{distance\_cutoff}] A numeric value for the distance cutoff (0 < cutoff <= 1).
+
+\item[\code{linkage\_method}] A string specifying the linkage method to use
+(e.g., "average"). Supported options are "single", "complete",
+"average", and "ward".
+
+\item[\code{linkage\_cutoff}] A numeric value between 0 and 1 for the membership cutoff.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A named list containing:
+- `distance\_matrix`: The distance matrix used in clustering.
+- `clusters`: The final clusters.
+- `df\_list`: The original list of enrichment result dataframes.
+- `merged\_df`: The merged dataframe containing combined results.
+- `cluster\_options`: A list of clustering parameters used in the analysis.
+- `df\_names` (optional): The names of the input dataframes if provided.
+\end{Value}
+\HeaderA{cluster\_bar}{Cluster-level Bar Plot of Enrichment Significance}{cluster.Rul.bar}
+%
+\begin{Description}
+Generates a horizontal bar plot showing average enrichment significance
+for each cluster, across one or more enrichment datasets.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster_bar(cluster_result, clusters = NULL, value_type = "Padj", title = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A result list returned by \code{\LinkA{cluster}{cluster}}.
+
+\item[\code{clusters}] Optional numeric vector of cluster IDs to include. Defaults to all clusters.
+
+\item[\code{value\_type}] The column name to use for enrichment significance ("Padj" or "Pvalue").
+
+\item[\code{title}] Optional plot title. If NULL, a default will be generated.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{plotly} object representing the bar plot.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+cbar <- cluster_bar(cluster_result)
+cbar
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{cluster\_correlation\_hmap}{Create a Correlation Heatmap for a Specific Cluster}{cluster.Rul.correlation.Rul.hmap}
+%
+\begin{Description}
+This function generates a correlation heatmap for a specific cluster based on the provided distance matrix.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster_correlation_hmap(
+  final_clusters,
+  distance_matrix,
+  cluster_number,
+  merged_df
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{final\_clusters}] A dataframe containing the final cluster data.
+
+\item[\code{distance\_matrix}] A matrix representing the distances between terms.
+
+\item[\code{cluster\_number}] An integer specifying the cluster number to visualize.
+
+\item[\code{merged\_df}] A dataframe with all terms used to map term indices to names.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+An interactive heatmaply heatmap.
+\end{Value}
+\HeaderA{cluster\_dot}{Cluster-level Dot Plot of Enrichment Significance}{cluster.Rul.dot}
+%
+\begin{Description}
+Creates a dot plot summarizing cluster-level enrichment across datasets.
+Each point represents a cluster, with its size proportional to the number
+of terms and its x-position reflecting average significance (e.g., Padj or Pvalue).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster_dot(cluster_result, clusters = NULL, value_type = "Padj", title = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A result list returned from \code{\LinkA{cluster}{cluster}}.
+
+\item[\code{clusters}] Optional numeric vector of cluster IDs to include. Defaults to all clusters.
+
+\item[\code{value\_type}] The name of the value column to visualize (e.g., "Padj" or "Pvalue").
+
+\item[\code{title}] Optional title for the plot. If NULL, a default title is generated.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{plotly} object representing the dot plot.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+cdot <- cluster_dot(cluster_result)
+cdot
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{cluster\_hmap}{Create a Heatmap of Clustered Enrichment Results}{cluster.Rul.hmap}
+%
+\begin{Description}
+Generates an interactive heatmap from the given clustering results,
+visualizing -log10(Padj) values for each cluster. The function aggregates
+values per cluster and assigns representative terms as row names.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster_hmap(
+  cluster_result,
+  clusters = NULL,
+  value_type = "Padj",
+  aggr_type = mean
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A list containing a data frame (`cluster\_df`) with clustering results.
+The data frame must contain at least the columns `Cluster`, `Term`, and `value\_type\_*` values.
+
+\item[\code{clusters}] Optional. A numeric or character vector specifying the clusters to include.
+If NULL (default), all clusters are included.
+
+\item[\code{value\_type}] A character string specifying the column name prefix for values to display in hmap cells.
+Defaults to `"Padj"`.
+
+\item[\code{aggr\_type}] A function used to aggregate values across clusters (e.g., `mean` or `median`).
+Defaults to `mean`.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The function processes the given cluster data frame (`cluster\_df`),
+aggregating the `value\_type\_*` values per cluster using the specified `aggr\_type` function.
+The -log10 transformation is applied, and infinite values are replaced with 0.
+
+Representative terms are selected by choosing the term with the lowest
+`value\_type` in each cluster.
+
+The final heatmap is generated using `heatmaply::heatmaply()`, with
+an interactive `plotly` visualization.
+\end{Details}
+%
+\begin{Value}
+An interactive heatmap object (`plotly`), displaying the -log10(Padj) values
+across clusters, with representative terms as row labels.
+\end{Value}
+\HeaderA{cluster\_network}{Create a Network Graph for a Specific Cluster}{cluster.Rul.network}
+%
+\begin{Description}
+This function generates a network graph for a specific cluster based on the provided distance matrix.
+The opacity and length of the edges correspond to the given distance\_metric (eg, kappa) score similarity 
+between terms, which is based on shared gene content.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cluster_network(final_clusters, distance_matrix, cluster_number, merged_df)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{final\_clusters}] A dataframe containing the final cluster data.
+
+\item[\code{distance\_matrix}] A matrix representing the distances between terms.
+
+\item[\code{cluster\_number}] An integer specifying the cluster number to visualize.
+
+\item[\code{merged\_df}] A dataframe with all terms used to map term indices to names.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+An interactive networkD3 network graph.
+\end{Value}
+\HeaderA{compare\_network\_graphs\_plotly}{Compare Network Graphs using Plotly}{compare.Rul.network.Rul.graphs.Rul.plotly}
+%
+\begin{Description}
+This function creates a side-by-side comparison of network graphs for a single
+cluster using different p-value types.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+compare_network_graphs_plotly(cluster_result, cluster_num, pval_names)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] The result from the clustering function.
+
+\item[\code{cluster\_num}] The cluster number to plot.
+
+\item[\code{pval\_names}] A list of p-value names to compare.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A plotly object.
+\end{Value}
+\HeaderA{david\_cluster}{Cluster Terms using DAVID's method}{david.Rul.cluster}
+%
+\begin{Description}
+This function performs clustering on enrichment results using an algorithm
+inspired by DAVID's functional clustering method.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+david_cluster(
+  enrichment_results,
+  df_names = NULL,
+  similarity_threshold = 0.5,
+  initial_group_membership = 3,
+  final_group_membership = 3,
+  multiple_linkage_threshold = 0.5
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{enrichment\_results}] A list of dataframes, each containing enrichment results.
+Each dataframe should include at least the columns 'Term', 'GeneID', and 'Padj'.
+
+\item[\code{df\_names}] Optional, a character vector of names for the enrichment result dataframes. Must
+match the length of `enrichment\_results`. Default is `NULL`.
+
+\item[\code{similarity\_threshold}] A numeric value for the kappa score cutoff (0 < cutoff <= 1).
+
+\item[\code{initial\_group\_membership}] Minimum number of terms to form an initial seed group.
+
+\item[\code{final\_group\_membership}] Minimum number of terms for a final cluster.
+
+\item[\code{multiple\_linkage\_threshold}] A numeric value for the merging threshold.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A named list containing the clustering results.
+\end{Value}
+\HeaderA{export\_df}{Export Cluster Result as Dataframe}{export.Rul.df}
+%
+\begin{Description}
+Returns a comprehensive dataframe containing all the different terms in all clusters.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+export_df(cluster_result)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] The cluster\_result object from cluster()
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A data.frame view of the clustering
+\end{Value}
+\HeaderA{filter\_clusters}{Filter Clusters by Number of Terms}{filter.Rul.clusters}
+%
+\begin{Description}
+Filters the full list of clusters by keeping only those with greater
+than or equal to min\_terms \# of terms.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_clusters(all_clusters, min_terms)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{all\_clusters}] A dataframe containing the merged seeds with column named `ClusterIndices`.
+
+\item[\code{min\_terms}] An integer specifying the minimum number of terms required in a cluster.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+The filtered data frame with clusters filtered to include only those with at least `min\_terms` terms.
+\end{Value}
+\HeaderA{format\_colnames}{Format Column Names for Merging}{format.Rul.colnames}
+%
+\begin{Description}
+This function maps a vector of column names to standardized names
+for "GeneID", "Pvalue", and "Padj" based on known variations.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+format_colnames(colnames)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{colnames}] A character vector of column names to be standardized.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A character vector of standardized column names.
+\end{Value}
+\HeaderA{full\_network}{Create a Network Graph for the Entire Distance Matrix}{full.Rul.network}
+%
+\begin{Description}
+This function generates a network graph for the entire distance matrix.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+full_network(cluster_result)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] Cluster result named list from richCluster::cluster()
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+An interactive networkD3 network graph.
+\end{Value}
+\HeaderA{load\_all}{Load all R scripts in subdirectories}{load.Rul.all}
+\keyword{internal}{load\_all}
+%
+\begin{Description}
+Load all R scripts in subdirectories
+\end{Description}
+\HeaderA{merge\_enrichment\_results}{Merge List of Enrichment Results}{merge.Rul.enrichment.Rul.results}
+%
+\begin{Description}
+This function merges multiple enrichment results ('enrichment\_results') into a single dataframe by
+combining unique GeneID elements across each geneset, and averaging Pvalue / Padj
+values for each term across all enrichment\_results.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+merge_enrichment_results(enrichment_results)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{enrichment\_results}] A list of geneset dataframes containing columns c('Term', 'GeneID', 'Pvalue', 'Padj')
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A single merged geneset dataframe with all original columns
+suffixed with the index of the geneset, with new columns 'GeneID', 'Pvalue',
+'Padj' containing the merged values.
+\end{Value}
+\HeaderA{plot\_network\_graph}{Plot Network Graph for a Cluster}{plot.Rul.network.Rul.graph}
+%
+\begin{Description}
+This function visualizes a single cluster as a network graph.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+plot_network_graph(
+  cluster_result,
+  cluster_num,
+  distance_matrix,
+  valuetype_list
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] The result from the clustering function.
+
+\item[\code{cluster\_num}] The cluster number to plot.
+
+\item[\code{distance\_matrix}] The distance matrix used for clustering.
+
+\item[\code{valuetype\_list}] A list of value types (e.g., "Pvalue\_1", "Padj\_1") to use for node coloring.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A plot object.
+\end{Value}
+\HeaderA{runRichCluster}{Run clustering in C++ backend}{runRichCluster}
+%
+\begin{Description}
+Run clustering in C++ backend
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+runRichCluster(
+  terms,
+  geneIDs,
+  distanceMetric,
+  distanceCutoff,
+  linkageMethod,
+  linkageCutoff
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{terms}] Character vector of term names
+
+\item[\code{geneIDs}] Character vector of geneIDs
+
+\item[\code{distanceMetric}] e.g. "kappa"
+
+\item[\code{distanceCutoff}] numeric between 0 and 1
+
+\item[\code{linkageMethod}] e.g. "average"
+
+\item[\code{linkageCutoff}] numeric between 0 and 1
+\end{ldescription}
+\end{Arguments}
+\HeaderA{term\_bar}{Term-level Bar Plot for a Specific Cluster}{term.Rul.bar}
+%
+\begin{Description}
+Creates a horizontal bar plot showing enrichment values for individual terms
+in a selected cluster.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+term_bar(cluster_result, cluster = 1, value_type = "Padj", title = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A result list returned by \code{\LinkA{cluster}{cluster}}.
+
+\item[\code{cluster}] Cluster ID (numeric) or term name (character) to visualize.
+
+\item[\code{value\_type}] The column name to use for enrichment significance ("Padj" or "Pvalue").
+
+\item[\code{title}] Optional plot title. If NULL, a default will be generated.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{plotly} object representing the bar plot.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+tbar <- term_bar(cluster_result, cluster = 1)
+tbar
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{term\_dot}{Term-level Dot Plot for a Specific Cluster}{term.Rul.dot}
+%
+\begin{Description}
+Creates a dot plot of individual terms within a specified cluster, showing
+their significance and number of genes.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+term_dot(cluster_result, cluster = 1, value_type = "Padj", title = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A result list returned from \code{\LinkA{cluster}{cluster}}.
+
+\item[\code{cluster}] Cluster ID (numeric) or term name (character) to plot.
+
+\item[\code{value\_type}] The name of the value column to visualize (e.g., "Padj" or "Pvalue").
+
+\item[\code{title}] Optional title for the plot. If NULL, a default title is generated using the representative term.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{plotly} object representing the dot plot of terms.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+tdot <- term_dot(cluster_result, cluster = 1)
+tdot
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{term\_hmap}{Generate a Heatmap of Enrichment Results for Specific Clusters and Terms}{term.Rul.hmap}
+%
+\begin{Description}
+Creates an interactive heatmap displaying -log10(Padj) values for selected clusters
+and terms. Users can specify clusters numerically or select them by providing term names.
+The function ensures that the final heatmap includes all terms from the selected clusters
+as well as any explicitly provided terms.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+term_hmap(cluster_result, clusters, terms, value_type, aggr_type, title = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{cluster\_result}] A list containing a data frame (`cluster\_df`) with clustering results.
+The data frame must include at least the columns `Cluster`, `Term`, and `Padj\_*` values.
+
+\item[\code{clusters}] Optional. A numeric vector specifying the cluster numbers to display,
+or a character vector specifying terms whose clusters should be included. Defaults to `NULL`,
+which includes all clusters.
+
+\item[\code{terms}] Optional. A character vector specifying additional terms to include in the heatmap.
+Defaults to `NULL`.
+
+\item[\code{value\_type}] A character string specifying the column name prefix for adjusted p-values.
+Defaults to `"Padj"`.
+
+\item[\code{aggr\_type}] A function used to aggregate values across clusters (e.g., `mean` or `median`).
+Defaults to `mean`.
+
+\item[\code{title}] An optional parameter to title the plot something else.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The function processes the given `cluster\_df`, identifying the clusters and terms to be visualized.
+If `clusters` is specified as a numeric vector, the function directly filters based on cluster numbers.
+If `clusters` is given as a character vector, it identifies the clusters associated with those terms
+and retrieves all terms from the selected clusters.
+
+The `Padj\_*` values are transformed using `-log10()`, and infinite values are replaced with `0`.
+The resulting heatmap is generated using `heatmaply::heatmaply()` with fixed row ordering
+(no hierarchical clustering).
+\end{Details}
+%
+\begin{Value}
+An interactive heatmap object (`plotly`), displaying the -log10(Padj) values
+across clusters, with representative terms as row labels and color-coded cluster annotations.
+\end{Value}
+\printindex{}
+\end{document}

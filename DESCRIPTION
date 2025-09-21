@@ -14,7 +14,7 @@ Description: The richCluster package contains a fast C++ agglomerative
     hierarchical clustering algorithm packaged into easily callable R
     functions, designed to help cluster biological 'terms' based on how
     similar of genes are expressed in their activation.
-License: MIT + file LICENSE
+License: GPL-3
 Depends: 
     R (>= 3.5.0)
 Imports:

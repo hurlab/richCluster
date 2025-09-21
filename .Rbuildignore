@@ -1,8 +1,31 @@
+# Ignore renv files
 ^renv$
 ^renv\.lock$
+
+# Ignore GitHub-specific files
+^\.github$
+^\.gitignore$
+^\.gitattributes$
+
+# Ignore RStudio project files
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^doc$
+
+# Ignore documentation sources
+^README\.Rmd$
+^README-.*\.png$
+
+# Ignore pkgdown website
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
 ^Meta$
-^LICENSE\.md$
 ^scripts$
+
+# Ignore dev/test files
+^\.DS_Store$
+^\.vscode$
+
+# Ignore LICENSE (GitHub adds full GPL text, CRAN doesn’t want it)
+^LICENSE$
+^LICENSE\.md$

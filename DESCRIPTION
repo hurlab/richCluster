@@ -1,0 +1,43 @@
+Type: Package
+Package: richCluster
+Title: Fast, Robust Clustering Algorithms for Gene Enrichment Data
+Version: 1.0.0
+Date: 2025-09-20
+Authors@R: c(
+    person("Junguk", "Hur", "hurlabshared@gmail.com", role = c("aut", "cre"), comment = c(ORCID="0000-0002-0736-2149")),
+    person("Sarah", "Hong", role = "aut"),
+    person("Jane", "Kim", role = "aut")
+  )
+Description: The richCluster package contains a fast C++ agglomerative
+    hierarchical clustering algorithm packaged into easily callable R
+    functions, designed to help cluster biological 'terms' based on how
+    similar of genes are expressed in their activation.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 3.5.0)
+Imports:
+    dplyr,
+    fields,
+    heatmaply,
+    igraph,
+    iheatmapr,
+    magrittr,
+    networkD3,
+    plotly,
+    Rcpp (>= 1.0.14),
+    stats,
+    tidyr,
+    viridis
+Suggests: 
+    devtools,
+    knitr,
+    rmarkdown,
+    roxygen2,
+    testthat
+LinkingTo: 
+    Rcpp
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+RoxygenNote: 7.3.3
+Maintainer: Junguk Hur <hurlabshared@gmail.com>

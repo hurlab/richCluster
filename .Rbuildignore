@@ -29,3 +29,6 @@
 # Ignore LICENSE (GitHub adds full GPL text, CRAN doesn’t want it)
 ^LICENSE$
 ^LICENSE\.md$
+
+# Other files
+^tests\/test_david_clustering\.R$

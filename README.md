@@ -13,7 +13,7 @@ As well as different linkage criteria for iteratively merging clusters together.
 - Ward
 
 ## Installation
-The package is currently under review in submission to CRAN, but for now users can install the package and try out the clustering and visualization features by installing through GitHub.
+The package is currently under review for submission to CRAN, but for now, users can install the package and try out the clustering and visualization features by installing through GitHub.
 
 ```shell
 install.packages("devtools")
@@ -26,12 +26,12 @@ The basic flow is as follows. A demo can be followed along in the `tests.R` scri
 
 <img src="https://github.com/user-attachments/assets/f5c857bc-8547-445f-be15-b9a1102f76f4" width="500" height="auto">
 
-The user can supply a list of enrichment results, and simply run `cluster()` with certain options to return a `ClusterResult` named list object which is all you need to pass in order to the various visualization functions.
+The user can supply a list of enrichment results and simply run `cluster()` with certain options to return a `ClusterResult` named list object, which is all you need to pass to the various visualization functions.
 
 ## Clustering
 The goal of the richCluster package is to simplify the workflow of clustering biological terms across multiple enrichment results. 
 
-- For instance, if a user has 3 different enrichment data corresponding to the same mouse at different stages of a disease and wants to directly compare those results side by side.
+- For instance, if a user has 3 different enrichment data corresponding to the same mouse at different stages of a disease, and wants to directly compare those results side by side.
 
 Our `cluster()` function accepts any arbitrary number of enrichment results in a list, and then will cluster different `$Term` rows together based on how many shared genes they have in the `$GeneID` column.
 
@@ -44,14 +44,14 @@ The absolute minimum a user must do is to provide a list of dataframes correspon
 Some basic options to customize clustering outputs include:
 - `df_names` - An optional character vector of names for the enrichment result dataframes. Must match the length of `enrichment_results`. Default is NULL.
 - `min_terms` - Minimum number of terms each final cluster must include
-- `min_value` - Minimum 'Pvalue' a term must have in order to be counted in final clustering
+- `min_value` - Minimum 'Pvalue' a term must have in order to be counted in the final clustering
 
 ### Distance metric
-We also allow user to specify which distance metric / cutoff score they want to use to cluster terms together.
+We also allow users to specify which distance metric / cutoff score they want to use to cluster terms together.
 - `distance_metric` - A string specifying the distance metric to use (e.g., "kappa").
 - `distance_cutoff` - A numeric value for the distance cutoff (0 < cutoff <= 1).
 
-Note that we technically are using a 'similarity' metric, so the cutoff is the *minimum* kappa score (for instance) that two terms must share in order to be clustered together. Hence a higher cutoff would lead to stricter clustering / smaller clusters.
+Note that we technically are using a 'similarity' metric, so the cutoff is the *minimum* kappa score (for instance) that two terms must share in order to be clustered together. Hence, a higher cutoff would lead to stricter clustering / smaller clusters.
 
 ### Linkage method
 After an initial grouping of terms based on having a distance score above a certain cutoff, we merge our initial "seed groups" (pre-clusters) together based on the provided linkage method.
@@ -70,7 +70,7 @@ The full list of supported linkage methods includes:
 Again, a higher linkage_cutoff leads to stricter (smaller) clusters.
 
 ### Output
-The output of the `cluster()` function is a `ClusterResult` which can be directly inputted into the visualizations or exported as a csv file with some additional options.
+The output of the `cluster()` function is a `ClusterResult`, which can be directly input into the visualizations or exported as a CSV file with some additional options.
 
 The name of each cluster is determined as the term in the cluster with the highest gene count.
 
@@ -119,7 +119,7 @@ As well as an option to export as a dataframe (CSV).
 <img src="https://i.imgur.com/example.png" width="500" height="auto">
 
 ### Heatmaps
-`cluster_hmap` displays the -log10(pvalue) of all the different clusters across the user's supplied enrichment results.
+`cluster_hmap` displays the -log10(pvalue) of all the different clusters across the user-supplied enrichment results.
 
 <img src="https://github.com/user-attachments/assets/cd5197ba-a1bf-4f40-a2b8-73eca9f1af1b" width="500" height="auto">
 
@@ -128,7 +128,7 @@ As well as an option to export as a dataframe (CSV).
 <img src="https://github.com/user-attachments/assets/9ecd9686-d2dc-4548-b51e-61c8a7029817" width="500" height="auto">
 
 ### Bar plots
-`cluster_bar` displays the -log10(pvalue) of all the different clusters across the user's supplied enrichment results.
+`cluster_bar` displays the -log10(pvalue) of all the different clusters across the user-supplied enrichment results.
 
 <img src="https://github.com/user-attachments/assets/2d856a58-4a30-4870-b0ca-b3a2ea48a23d" width="600" height="auto">
 
@@ -147,14 +147,14 @@ As well as an option to export as a dataframe (CSV).
 <img src="https://github.com/user-attachments/assets/dc76c127-f7f9-4f6e-9bbd-56c74d2c2107" width="500" height="auto">
 
 ### Export as CSV
-To view the data in excel / as a dataframe, users can export the final clustered data as a dataframe with `export_df` and save their results to a csv as follows.
+To view the data in Excel / as a dataframe, users can export the final clustered data as a dataframe with `export_df` and save their results to a CSV as follows.
 
 ```r
 cluster_df <- richCluster::export_df(cluster_result)
 write.csv(cluster_df, "~/Downloads/cluster_df.csv", row.names=FALSE)
 ```
 
-Otherwise, to retain access to the entire suite of visualization functions users can also download the entire cluster_result as a list object as follows:
+Otherwise, to retain access to the entire suite of visualization functions, users can also download the entire cluster_result as a list object as follows:
 ```r
 saveRDS(cluster_result, file = "~/Downloads/cluster_result.rds")
 ```
@@ -168,6 +168,10 @@ to avoid re-clustering large datasets across multiple work sessions.
 
 
 ## Troubleshooting
-Note: If you are receiving errors, please try renaming your columns of interest to 'Term' and 'GeneID' across all genesets of interest, and make sure the formatting of the columns is consistent (eg, same Term/GeneID name spellings) across all datasets.
+Note: If you are receiving errors, please try renaming your columns of interest to 'Term' and 'GeneID' across all gene sets of interest, and make sure the formatting of the columns is consistent (eg, same Term/GeneID name spellings) across all datasets.
 
-If that doesn't work, feel free to raise a GitHub issue or email @ssh2198@columbia.edu and I'll try to help you with your problem.
+If that doesn't work, feel free to raise a GitHub issue or email hurlabshared@gmail.com, and we'll try to help you with your problem.
+
+## Developer
+Primary developer: Sarah Hong (Columbia University)<br>
+Principal investigator: Junguk Hur (University of North Dakota)

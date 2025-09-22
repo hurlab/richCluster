@@ -172,6 +172,7 @@ Note: If you are receiving errors, please try renaming your columns of interest 
 
 If that doesn't work, feel free to raise a GitHub issue or email hurlabshared@gmail.com, and we'll try to help you with your problem.
 
-## Developer
+## Authors
 Primary developer: Sarah Hong (Columbia University)<br>
+Secondary developer: Jane Kim (Chadwick International High School)<br>
 Principal investigator: Junguk Hur (University of North Dakota)

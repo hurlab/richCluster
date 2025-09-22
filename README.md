@@ -109,15 +109,6 @@ Using these two categories, we have three different types of plots which are cur
 
 As well as an option to export as a dataframe (CSV).
 
-### Network Graphs
-`plot_network_graph` visualizes a single cluster as a network graph, where nodes are terms and edges represent the similarity between them. Node colors can represent p-values from multiple datasets.
-
-<img src="https://i.imgur.com/example.png" width="500" height="auto">
-
-`compare_network_graphs_plotly` provides an interactive, side-by-side comparison of network graphs for a single cluster using different p-value types.
-
-<img src="https://i.imgur.com/example.png" width="500" height="auto">
-
 ### Heatmaps
 `cluster_hmap` displays the -log10(pvalue) of all the different clusters across the user-supplied enrichment results.
 
@@ -145,6 +136,16 @@ As well as an option to export as a dataframe (CSV).
 `term_dot` shows the enrichment data with the number of genes in each term being associated with dot radius and the x-axis being the -log10(pvalue).
 
 <img src="https://github.com/user-attachments/assets/dc76c127-f7f9-4f6e-9bbd-56c74d2c2107" width="500" height="auto">
+
+### Network Graphs
+`plot_network_graph` visualizes a single cluster as a network graph, where nodes are terms and edges represent the similarity between them. Node colors can represent p-values from multiple datasets.
+
+<!-- <img src="https://i.imgur.com/example.png" width="500" height="auto"> -->
+
+`compare_network_graphs_plotly` provides an interactive, side-by-side comparison of network graphs for a single cluster using different p-value types.
+
+<!-- <img src="https://i.imgur.com/example.png" width="500" height="auto"> -->
+
 
 ### Export as CSV
 To view the data in Excel / as a dataframe, users can export the final clustered data as a dataframe with `export_df` and save their results to a CSV as follows.

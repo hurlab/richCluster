@@ -64,8 +64,8 @@ The default recommended should be `average`, which takes the average distance be
 The full list of supported linkage methods includes:
 - `"single"`
 - `"complete"`
-- `"average"`
-- `"ward"` (recommended)
+- `"average"` (recommended)
+- `"ward"` 
 
 Again, a higher linkage_cutoff leads to stricter (smaller) clusters.
 

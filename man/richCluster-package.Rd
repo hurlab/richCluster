@@ -9,6 +9,14 @@
 Tools for clustering enriched terms, building correlation networks,
 and producing interactive heatmaps and network views.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/hurlab/richCluster}
+  \item Report bugs at \url{https://github.com/hurlab/richCluster/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Junguk Hur \email{hurlabshared@gmail.com} (\href{https://orcid.org/0000-0002-0736-2149}{ORCID})
 

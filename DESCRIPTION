@@ -10,7 +10,7 @@ Authors@R: c(
     person("Jane", "Kim", role = "aut")
   )
 Maintainer: Junguk Hur <hurlabshared@gmail.com>
-Description: contains a fast 'C++' agglomerative hierarchical clustering 
+Description: Fast 'C++' agglomerative hierarchical clustering 
 	algorithm packaged into easily callable R functions, designed 
 	to help cluster biological terms based on how
     similar of genes are expressed in their activation.

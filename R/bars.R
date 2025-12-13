@@ -15,7 +15,10 @@ NULL
 #' @return A \code{plotly} object representing the bar plot.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Load example data
+#' cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+#'                                       package = "richCluster"))
 #' cbar <- cluster_bar(cluster_result)
 #' cbar
 #' }
@@ -93,7 +96,10 @@ cluster_bar <- function(cluster_result, clusters=NULL, value_type="Padj", title=
 #' @return A \code{plotly} object representing the bar plot.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Load example data
+#' cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+#'                                       package = "richCluster"))
 #' tbar <- term_bar(cluster_result, cluster = 1)
 #' tbar
 #' }

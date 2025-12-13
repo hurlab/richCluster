@@ -193,7 +193,6 @@ term_hmap <- function(cluster_result, clusters, terms, value_type, aggr_type, ti
   if (is.null(title)) {
     cluster_str <- paste(final_terms, ', ')
     title <- paste0("-log10(", value_type, ")")
-    print(title)
   }
 
   h <- iheatmapr::main_heatmap(

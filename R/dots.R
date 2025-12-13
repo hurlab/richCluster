@@ -15,7 +15,10 @@ NULL
 #'
 #' @return A \code{plotly} object representing the dot plot.
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Load example data
+#' cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+#'                                       package = "richCluster"))
 #' cdot <- cluster_dot(cluster_result)
 #' cdot
 #' }
@@ -117,7 +120,10 @@ cluster_dot <- function(cluster_result, clusters=NULL, value_type="Padj", title=
 #'
 #' @return A \code{plotly} object representing the dot plot of terms.
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Load example data
+#' cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+#'                                       package = "richCluster"))
 #' tdot <- term_dot(cluster_result, cluster = 1)
 #' tdot
 #' }

@@ -32,3 +32,6 @@
 
 # Other files
 ^tests\/test_david_clustering\.R$
+^cran-comments\.md$
+^CHANGES_SUMMARY\.md$
+^CRAN_SUBMISSION_MESSAGE\.txt$

@@ -23,7 +23,10 @@ Generates a horizontal bar plot showing average enrichment significance
 for each cluster, across one or more enrichment datasets.
 }
 \examples{
-\dontrun{
+\donttest{
+# Load example data
+cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+                                      package = "richCluster"))
 cbar <- cluster_bar(cluster_result)
 cbar
 }

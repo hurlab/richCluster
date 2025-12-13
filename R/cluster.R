@@ -168,6 +168,13 @@ make_full_clusterdf <- function(final_clusters, merged_df) {
 #' @param linkageMethod e.g. "average"
 #' @param linkageCutoff numeric between 0 and 1
 #'
+#' @return A list containing the clustering results with the following components:
+#' \describe{
+#'   \item{distance_matrix}{A numeric matrix containing pairwise distances between terms based on gene similarity}
+#'   \item{all_clusters}{A data frame with columns 'Cluster' (cluster ID) and 'TermIndices' (comma-separated indices of terms in each cluster)}
+#'   \item{linkage_tree}{The hierarchical clustering dendrogram structure from the agglomerative clustering process}
+#' }
+#'
 #' @export
 runRichCluster <- function(terms, geneIDs, distanceMetric, distanceCutoff, linkageMethod, linkageCutoff) {
   .Call(`_richCluster_runRichCluster`, terms, geneIDs, distanceMetric, distanceCutoff, linkageMethod, linkageCutoff)

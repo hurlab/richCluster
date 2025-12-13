@@ -24,7 +24,10 @@ Each point represents a cluster, with its size proportional to the number
 of terms and its x-position reflecting average significance (e.g., Padj or Pvalue).
 }
 \examples{
-\dontrun{
+\donttest{
+# Load example data
+cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+                                      package = "richCluster"))
 cdot <- cluster_dot(cluster_result)
 cdot
 }

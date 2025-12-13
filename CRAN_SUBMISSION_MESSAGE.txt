@@ -1,0 +1,14 @@
+## Resubmission – richCluster 1.0.2
+
+This resubmission addresses all feedback from the previous CRAN reviews.
+
+1. Added missing \value documentation to runRichCluster.Rd.
+2. Replaced \dontrun{} with \donttest{} in all examples and ensured example data are loaded.
+3. Removed an unsuppressible print() statement from R/hmaps.R.
+4. Added on.exit() to properly restore par() settings in R/plot_network_graph.R.
+5. As requested in earlier CRAN review rounds, the following changes were implemented in version 1.0.1:
+   a. The Description field was updated to start with an uppercase letter.
+   b. The package name was removed from the Title and Description, and software names were enclosed in single quotes.
+   c. A reference to the implemented method was added via the project GitHub repository, which currently serves as the primary reference.
+
+Thank you for your time and consideration.

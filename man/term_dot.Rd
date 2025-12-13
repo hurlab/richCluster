@@ -23,7 +23,10 @@ Creates a dot plot of individual terms within a specified cluster, showing
 their significance and number of genes.
 }
 \examples{
-\dontrun{
+\donttest{
+# Load example data
+cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+                                      package = "richCluster"))
 tdot <- term_dot(cluster_result, cluster = 1)
 tdot
 }

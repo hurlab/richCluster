@@ -1,8 +1,8 @@
 Type: Package
 Package: richCluster
 Title: Fast, Robust Clustering Algorithms for Gene Enrichment Data
-Version: 1.0.1
-Date: 2025-11-28
+Version: 1.0.2
+Date: 2025-12-12
 Authors@R: c(
     person("Junguk", "Hur", , "hurlabshared@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0736-2149")),

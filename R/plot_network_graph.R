@@ -90,6 +90,8 @@ plot_network_graph <- function(cluster_result, cluster_num, distance_matrix, val
        vertex.label.degree = -90, vertex.label = short_term_names,
        vertex.label.cex = 0.7, vertex.size = 30, main = representative_term)
 
+  oldpar <- graphics::par(no.readonly = TRUE)
+  on.exit(graphics::par(oldpar))
   graphics::par(mar = c(5, 4, 4, 6))
   fields::image.plot(
     legend.only = TRUE,

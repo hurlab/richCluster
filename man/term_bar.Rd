@@ -23,7 +23,10 @@ Creates a horizontal bar plot showing enrichment values for individual terms
 in a selected cluster.
 }
 \examples{
-\dontrun{
+\donttest{
+# Load example data
+cluster_result <- readRDS(system.file("extdata", "cluster_result.rds",
+                                      package = "richCluster"))
 tbar <- term_bar(cluster_result, cluster = 1)
 tbar
 }
